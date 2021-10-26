@@ -1,0 +1,10 @@
+name: 'Migrate field plugin manager test'
+type: module
+description: 'Example module demonstrating the field plugin manager in the Migrate API.'
+package: Testing
+# version: VERSION
+
+# Information added by Drupal.org packaging script on 2021-09-15
+version: '9.2.6'
+project: 'drupal'
+datestamp: 1631721621

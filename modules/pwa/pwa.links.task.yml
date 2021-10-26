@@ -1,0 +1,5 @@
+pwa.config:
+  route_name: pwa.config
+  base_route: pwa.config
+  title: 'Settings'
+  parent: pwa.admin_index

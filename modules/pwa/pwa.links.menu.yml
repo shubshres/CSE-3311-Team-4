@@ -1,0 +1,10 @@
+pwa.admin_index:
+  title: 'Progressive web app'
+  route_name: 'pwa.admin_index'
+  parent: system.admin_config
+  description: 'Configure Progressive web app'
+pwa.config:
+  title: PWA settings
+  description: 'Progressive web app configuration'
+  parent: pwa.admin_index
+  route_name: pwa.config

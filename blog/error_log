@@ -1,0 +1,12 @@
+[25-Sep-2021 19:43:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_transient() in /home/mavsinjapan/public_html/blog/deleteme.wpatgn.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/mavsinjapan/public_html/blog/deleteme.wpatgn.php on line 16
+[25-Sep-2021 19:43:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_transient() in /home/mavsinjapan/public_html/blog/deleteme.wpbx6w.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/mavsinjapan/public_html/blog/deleteme.wpbx6w.php on line 16
+[25-Sep-2021 19:43:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_transient() in /home/mavsinjapan/public_html/blog/deleteme.wp9ryc.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/mavsinjapan/public_html/blog/deleteme.wp9ryc.php on line 16

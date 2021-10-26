@@ -1,0 +1,10 @@
+name: Color
+type: module
+description: 'Allows users to change the color scheme of compatible themes.'
+package: Core
+# version: VERSION
+
+# Information added by Drupal.org packaging script on 2021-09-15
+version: '9.2.6'
+project: 'drupal'
+datestamp: 1631721621

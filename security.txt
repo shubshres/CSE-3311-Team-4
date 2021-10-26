@@ -1,0 +1,3 @@
+Contact: https://www.uta.edu/security/incident/ 
+Encryption: (none)
+Acknowledgements: https://www.uta.edu/security/

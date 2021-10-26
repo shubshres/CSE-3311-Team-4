@@ -1,0 +1,51 @@
+pwa.config:
+  type: config_object
+  label: 'PWA config'
+  mapping:
+    site_name:
+      type: text
+      label: 'Web app name'
+    short_name:
+      type: text
+      label: 'Short name'
+    description:
+      type: text
+      label: 'Description'
+    start_url:
+      type: text
+      label: 'Start url'
+    lang:
+      type: text
+      label: 'Language'
+    theme_color:
+      type: text
+      label: 'Theme color'
+    background_color:
+      type: text
+      label: 'Background color'
+    display:
+      type: text
+      label: 'Display type'
+    default_image:
+      type: text
+      label: 'Use the theme image'
+    urls_to_cache:
+      type: text
+      label: 'URLs to cache'
+    urls_to_exclude:
+      type: text
+      label: 'URLs exclude'
+    offline_page:
+      type: path
+      label: 'Offline page path'
+    cache_version:
+      type: text
+      label: 'Cache version'
+    cross_origin:
+      type: boolean
+      label: 'The site is behind HTTP basic authentication'
+      translatable: false
+    skip_waiting:
+      type: boolean
+      label: 'An updated SW immediately activates after installing'
+      translatable: false

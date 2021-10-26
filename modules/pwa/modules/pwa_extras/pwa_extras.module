@@ -1,0 +1,85 @@
+<?php
+
+/**
+ * @file
+ * Contains pwa_extras.module
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function pwa_extras_page_attachments(array &$attachments) {
+  if (!\Drupal::currentUser()->hasPermission('access content')) {
+    return;
+  }
+
+  $config = \Drupal::config('pwa_extras.settings.apple');
+  $status_color = $config->get('color_select');
+  $tag_list = pwa_extras_tag_list($status_color);
+
+  $meta_tags = $config->get('touch_icons') + $config->get('meta_tags') + $config->get('home_screen_icons');
+  if (empty($meta_tags)) return;
+
+  foreach ($meta_tags as $key => $value) {
+    if (!$value) continue;
+
+    $string_tag = $tag_list[$key];
+    $dom = new DOMDocument;
+    $dom->loadHTML($string_tag);
+    $data = $dom->documentElement->firstChild->firstChild;
+    $tag_name = $data->tagName;
+
+    $tag_attributes = [];
+    foreach ($data->attributes as $attribute) {
+      $tag_attributes[$attribute->name] = $attribute->value;
+    }
+
+    if ($tag_name == 'link') {
+      $attachments['#attached']['html_head_link'][] = [$tag_attributes];
+    }
+    else {
+      $tag_data = [
+        '#tag' => $tag_name,
+        '#attributes' => $tag_attributes,
+      ];
+      $attachments['#attached']['html_head'][] = [$tag_data, $tag_attributes['name']];
+    }
+  }
+}
+
+function pwa_extras_tag_list($status_color) {
+  $touch_icons = pwa_extras_apple_touch_icons();
+  $meta_tags = pwa_extras_apple_meta_tags($status_color);
+  $homescreen_icons = pwa_extras_apple_home_screen_icons();
+  return array_merge($touch_icons, $meta_tags, $homescreen_icons);
+}
+
+function pwa_extras_apple_touch_icons() {
+  $config = \Drupal::config('pwa.config');
+
+  return [
+    'touch-icon-default' => '<link rel="apple-touch-icon" sizes="192x192" href="' . $config->get('image_small') . '">',
+  ];
+}
+
+function pwa_extras_apple_meta_tags($status_color = '') {
+  return [
+    'meta-capable' => '<meta name="apple-mobile-web-app-capable" content="yes">',
+    'meta-status-bar-style' => '<meta name="apple-mobile-web-app-status-bar-style" content="' . $status_color . '">',
+  ];
+}
+
+function pwa_extras_apple_home_screen_icons() {
+  return [
+    'iphone5-splash' => '<link href="' . base_path() . 'iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />',
+    'iphone6-splash' => '<link href="' . base_path() . 'iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />',
+    'iphoneplus-splash' => '<link href="' . base_path() . 'iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />',
+    'iphonex-splash' => '<link href="' . base_path() . 'iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />',
+    'iphonexr-splash' => '<link href="' . base_path() . 'iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />',
+    'iphonexsmax-splash' => '<link href="' . base_path() . 'iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />',
+    'ipad-splash' => '<link href="' . base_path() . 'ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />',
+    'ipadpro1-splash' => '<link href="' . base_path() . 'ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />',
+    'ipadpro2-splash' => '<link href="' . base_path() . 'ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />',
+    'ipadpro3-splash' => '<link href="' . base_path() . 'ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />',
+  ];
+}

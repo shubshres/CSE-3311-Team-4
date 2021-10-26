@@ -1,0 +1,13 @@
+name: Progressive Web App Extras
+description: Builds on top of Progressive Web App to deliver extra functionality.
+core: 8.x
+core_version_requirement: ^8 || ^9
+type: module
+configure: pwa_extras.settings
+dependancies:
+  - pwa
+
+# Information added by Drupal.org packaging script on 2021-03-26
+version: '8.x-1.5'
+project: 'pwa'
+datestamp: 1616783888
