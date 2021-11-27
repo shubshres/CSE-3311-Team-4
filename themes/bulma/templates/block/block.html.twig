@@ -1,0 +1,50 @@
+{% extends "@stable/block/block.html.twig" %}
+{# Child templates can override the default classes. #}
+{%
+  set classes = classes ?? [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'clearfix',
+  ]
+%}
+{# Footer blocks display in columns. #}
+{% if region == 'footer' %}
+  {%
+    set classes = classes|merge([
+      'column',
+      'is-narrow',
+    ])
+  %}
+{% endif %}
+{% if block_panel_style %}
+  {% set classes = classes|merge(['panel']) %}
+  {%
+    set title_classes = title_classes ?? []
+  %}
+  {%
+    set title_classes = title_classes|merge([
+      'panel-heading',
+    ])
+  %}
+{% elseif not title_classes %}
+  {%
+    set title_classes = [
+      'subtitle',
+      'is-4',
+      'is-uppercase'
+    ]
+  %}
+{% endif %}
+{% set attributes = attributes.addClass(classes) %}
+{% set title_attributes = title_attributes.addClass(title_classes) %}
+{# Override the content block to conditionally add a panel wrapper. #}
+{% block content %}
+  {% if block_panel_style %}
+    <div class="panel-block">
+  {% endif %}
+  {{ content }}
+  {% if block_panel_style %}
+    </div>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+// Vertical tabs fix.
+.vertical-tabs {
+  .vertical-tabs__panes {
+    padding: 1rem;
+
+    .vertical-tabs__pane {
+      padding-right: 1rem;
+    }
+
+    // Fix for fieldsets inside vertical tabs.
+    .panel {
+      .panel-block {
+        border: 0;
+      }
+    }
+
+    .control {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+    }
+
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #header {
+    .nav-menu {
+      &.nav-right {
+        &.is-active {
+          nav {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+article {
+  &.content {
+    padding-bottom: 2rem;
+  }
+
+  section {
+    &.comment-section {
+      article {
+        padding-bottom: 2rem;
+      }
+    }
+  }
+}
+
+.links {
+
+  &.bulma {
+    padding-top: 1rem;
+  }
+}
+
+// Customize inline labels.
+// @see templates/field/field.html.twig
+.label {
+  &.is-pulled-left {
+    margin-bottom: 0;
+    margin-right: 0.5rem;
+    &::after {
+      content: ':';
+    }
+  }
+}
+
+// Add margin between logo and site name.
+.block-system-branding-block {
+  > figure {
+    margin-right: 0.5rem
+  }
+}
+
+// Add padding for left and right aligned images
+.container {
+  img.align-right {
+    padding-left: 10px;
+  }
+  img.align-left {
+    padding-right: 10px;
+  }
+}
+
+// Comment indentation.
+.indented {
+  margin-left: 3em;
+}
+[dir="rtl"] .indented {
+  margin-left: 0;
+  margin-right: 3em;
+}
+
+// Quick edit fixes.
+.quickedit-toolbar {width:100%; }
+.quickedit-toolbar-label { position: absolute; left:30px; font-size:0.8rem; }
+.quickedit-toolgroup.ops { position: absolute; right:5px; }
+.quickedit .icon.icon-only {display: inline-block; }
+.quickedit .icon-close:before { top: 6px; }
+.quickedit-button.action-save { min-width: 3.5em; }
+.quickedit button.icon { font-size: 0.8em; }
+.quickedit .icon { min-height:2em; }

@@ -1,0 +1,451 @@
+<?php
+
+/**
+ * @file
+ * The primary PHP file for the Drupal Bulma base theme.
+ */
+
+use Drupal\block\Entity\Block;
+use Drupal\bulma\Bulma;
+use Drupal\bulma\Bulmaswatch;
+use Drupal\file\Entity\File;
+
+/**
+ * Implements template_preprocess_page().
+ */
+function bulma_preprocess_page(&$variables) {
+
+  // Site slogan as separate variable.
+  $site_config = \Drupal::config('system.site');
+  $variables['site_slogan'] = $site_config->get('slogan');
+}
+
+/**
+ * Implements template_preprocess_file_link().
+ */
+function bulma_preprocess_file_link(&$variables) {
+  /** @var \Drupal\Core\Entity\Entity\File $file */
+  $file = ($variables['file'] instanceof File) ? $variables['file'] : File::load($variables['file']->fid);
+
+  $variables['icon'] = Bulma::getFileIcon($file);
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function bulma_page_attachments_alter(&$page) {
+
+  // Force IE to use Chrome Frame if installed.
+  $page['#attached']['html_head'][] = [
+    [
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => [
+        'http-equiv' => 'X-UA-Compatible',
+        'content' => 'IE=edge,chrome=1',
+      ],
+    ],
+    'chrome_frame',
+  ];
+
+  // Remove image toolbar in IE.
+  $page['#attached']['html_head'][] = [
+    [
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => [
+        'http-equiv' => 'ImageToolbar',
+        'content' => 'false',
+      ],
+    ],
+    'ie_image_toolbar',
+  ];
+
+  // Alter viewport.
+  $page['#attached']['html_head'][] = [
+    [
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'viewport',
+        'content' => 'width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no',
+      ],
+    ],
+    'viewport',
+  ];
+}
+
+/**
+ * Implements bulma_preprocess_HOOK() for breadcrumb.
+ */
+function bulma_preprocess_breadcrumb(&$variables) {
+  // Load Bulma class from settings.
+  $classes = array_merge(['breadcrumb'], Bulma::multiSettings('breadcrumb'));
+  foreach ($classes as $class) {
+    $variables['attributes']['class'][] = $class;
+  }
+  $variables['attributes']['role'] = 'navigation';
+  $variables['attributes']['aria-labelledby'] = 'system-breadcrumb';
+}
+
+/**
+ * Implements theme_menu_local_tasks().
+ */
+function bulma_preprocess_menu_local_tasks(&$variables) {
+
+  // Load Bulma class from settings.
+  $bulma_tabs_class = Bulma::multiSettings('tabs');
+
+  if (!empty($bulma_tabs_class)) {
+    // Set variables.
+    foreach ($bulma_tabs_class as $key => $class) {
+      $variables[str_replace('is-', '', $key)] = $class;
+    }
+
+  }
+
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function bulma_form_alter(&$form, $form_state, $form_id) {
+
+  // Check for actions buttons, group them.
+  if (isset($form['actions'])) {
+    $form['actions']['#attributes']['class'][] = 'field';
+    $form['actions']['#attributes']['class'][] = 'is-grouped';
+
+    // Loop trough array to get link type.
+    // Better approach maybe to use https://www.drupal.org/project/button_link.
+    foreach ($form['actions'] as $key => $action) {
+      if (isset($action['#type'])) {
+        if ($action['#type'] == 'link') {
+          $name = (string) $action['#title'];
+
+          // Check if button should be colorized.
+          $button_color = Bulma::colorizeButton($name);
+
+          // Add button class.
+          if (!empty($button_color)) {
+            foreach ($button_color as $class) {
+              $form['actions'][$key]['#attributes']['class'][] = $class;
+            }
+          }
+        }
+
+      }
+    }
+  }
+
+  switch ($form_id) {
+    case 'node_preview_form_select':
+      $form['backlink']['#options']['attributes']['class'][] = 'button';
+      break;
+  }
+
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function bulma_form_search_form_alter(&$form, $form_state, $form_id) {
+
+  // Remove label.
+  $form['basic']['keys']['#title_display'] = 'invisible';
+
+  // Update the placeholder.
+  $form['basic']['keys']['#placeholder'] = t('Enter your keywords');
+
+  // Wrap class to combine form.
+  $form['basic']['#attributes']['class'] = 'field has-addons';
+
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function bulma_form_search_block_form_alter(&$form, $form_state, $form_id) {
+
+  // Update the placeholder, remove title - prevent double icon.
+  $form['keys']['#title'] = '';
+  $form['keys']['#placeholder'] = t('Search');
+
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function bulma_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  if ($variables['element']['#form_id'] === 'search_block_form') {
+    $suggestions[] = 'form__search_block_form';
+  }
+}
+
+/**
+ * Implements template_preprocess_block().
+ */
+function bulma_preprocess_block(&$variables) {
+
+  // Block as panel style.
+  if (Bulma::singleSetting('general.block')) {
+    if ($variables['configuration']['label_display']) {
+      $variables['block_panel_style'] = TRUE;
+    }
+  }
+
+  // Customize the ID and classes of the main menu block.
+  $main_menu = Bulma::singleSetting('general.menu');
+  $plugin_id = 'system_menu_block:' . $main_menu;
+  // Match blocks by plugin ID to support Bulma and any active subtheme.
+  if (!empty($variables['elements']['#plugin_id']) && $variables['elements']['#plugin_id'] == $plugin_id) {
+    $variables['attributes']['id'] = 'navbar-menu';
+    $variables['attributes']['class'][] = 'navbar-end';
+  }
+
+  // Set a region variable for use in templates.
+  if (isset($variables['elements']['#id'])) {
+    $block = Block::load($variables['elements']['#id']);
+    $variables['region'] = $block->getRegion();
+  }
+}
+
+/**
+ * Implements template_preprocess_table().
+ */
+function bulma_preprocess_table(&$variables) {
+  // Load existing classes.
+  $existing_class = [];
+  if (isset($variables['attributes']['class'])) {
+    $existing_class = $variables['attributes']['class'];
+  }
+
+  // Load Bulma specific table classes from theme settings.
+  $bulma_table_class = Bulma::multiSettings('table');
+
+  // Merge classes.
+  if (!empty($bulma_table_class)) {
+    $variables['attributes']['class'] = array_merge($existing_class, $bulma_table_class);
+  }
+
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function bulma_theme_suggestions_links_alter(array &$suggestions, array $variables) {
+  $link_type = $variables['theme_hook_original'];
+
+  // We want only affect node and comment links.
+  $target_output = ['links__node', 'links__comment'];
+
+  if (in_array($link_type, $target_output)) {
+    $suggestions[] = 'links__bulma';
+  }
+
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function bulma_theme_suggestions_input_alter(array &$suggestions, array $variables) {
+
+  // Define defaults for exclusion for rendering as bulma input.
+  $exclude_input = [
+    'hidden',
+    'token',
+    'radio',
+    'checkbox',
+    'submit',
+    'image_button',
+  ];
+
+  // Submit button needs have render as button element.
+  if ($variables['element']['#type'] == 'submit') {
+    $suggestions[] = 'input__button__bulma';
+  }
+
+  // Add theme suggestions for others input elements.
+  if (!in_array($variables['element']['#type'], $exclude_input)) {
+
+    // Default wrapped input.
+    $suggestions[] = 'input__bulma';
+  }
+
+}
+
+/**
+ * Implements template_preprocess_hook().
+ */
+function bulma_preprocess_input__bulma(&$variables) {
+  // Make sure we have data to work from.
+  if (empty($variables['element']['#type']) || empty($variables['element']['#title'])) {
+    return;
+  }
+  // Field name and type.
+  $type = $variables['element']['#type'];
+  $name = (string) $variables['element']['#title'];
+
+  // Check if we use icons.
+  if (Bulma::singleSetting('general.icon')) {
+    $variables['icon'] = Bulma::iconMatch($name, $type);
+
+  }
+
+  // Size of input buttons.
+  $input_size = Bulma::singleSetting('bulma_elements_input_size');
+
+  if ($input_size != 'none') {
+    $variables['attributes']['class'][] = $input_size;
+  }
+
+}
+
+/**
+ * Implements template_preprocess_hook().
+ */
+function bulma_preprocess_input__button__bulma(&$variables) {
+
+  // Field name and type.
+  $name = $variables['element']['#value'];
+  $type = $variables['element']['#type'];
+
+  // We need render label inside button tag.
+  $variables['label'] = $variables['element']['#value'];
+
+  // Bulma submit classes.
+  $variables['bulma_button_classes'] = [];
+
+  // Check if button should be colorized.
+  $button_color = Bulma::colorizeButton($name);
+
+  if (!empty($button_color)) {
+    $variables['bulma_button_classes'] = $button_color;
+  }
+
+  // Check if we use icons.
+  if (Bulma::singleSetting('general.icon')) {
+    // Define default if not matched.
+    $variables['icon'] = Bulma::iconMatch($name, $type);
+
+    // Hide label for search button.
+    if ($variables['icon'] == 'search') {
+      $variables['label'] = FALSE;
+    }
+  }
+
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function bulma_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
+
+  // Navbar menu.
+  $bulma_nav = Bulma::singleSetting('general.menu');
+
+  // Check if any menu is selected to be nav menu.
+  if ($bulma_nav != 'none') {
+    if ($variables['menu_name'] === $bulma_nav) {
+      $suggestions[] = 'menu__nav_bulma';
+    }
+  }
+
+}
+
+/**
+ * Implements template_preprocess_form_element().
+ */
+function bulma_preprocess_form_element(&$variables) {
+
+  // Render the form element inside the label for checkbox and radio.
+  if (in_array($variables['element']['#type'], ['checkbox', 'radio'])) {
+    $variables['label']['#children'] = $variables['children'];
+    unset($variables['children']);
+  }
+
+}
+
+/**
+ * Implements template_preprocess_form_element_label().
+ */
+function bulma_preprocess_form_element_label(&$variables) {
+
+  // Check additional theme labels settings.
+  $bulma_labels = Bulma::multiSettings('label');
+
+  if (!empty($bulma_labels)) {
+    foreach ($bulma_labels as $key => $value) {
+      $variables[$key] = $value;
+    }
+  }
+
+}
+
+/**
+ * Implements template_preprocess_page_title().
+ */
+function bulma_preprocess_page_title(&$variables) {
+  $variables['title_attributes']['class'] = 'title';
+}
+
+/**
+ * Implements template_preprocess_views_view_table().
+ */
+function bulma_preprocess_views_view_table(&$variables) {
+
+  // Define defaults for variables.
+  $variables['bordered'] = FALSE;
+  $variables['striped'] = FALSE;
+  $variables['narrow'] = FALSE;
+  $variables['table'] = TRUE;
+
+  // Load Bulma specific table classes from theme settings.
+  $bulma_table_class = Bulma::multiSettings('table');
+
+  if (!empty($bulma_table_class)) {
+    foreach ($bulma_table_class as $class) {
+      $variables[str_replace('is-', '', $class)] = TRUE;
+    }
+  }
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function bulma_library_info_alter(&$libraries, $extension) {
+  // Swap in Bulmaswatch theme's CSS.
+  if ($extension === 'bulma' &&
+    isset($libraries['global']) &&
+    ($theme = theme_get_setting('cdn.bulmaswatch.theme'))
+  ) {
+    // If bulmaswatch is configured to use the default theme, use Bulma directly.
+    $cdn_data = Bulma::getCdnData();
+    $properties = [];
+    if ($theme === 'default') {
+      $bulma_file = '/css/bulma.css';
+      if (Bulma::isLocal()) {
+        $css_file = '/libraries/bulma' . $bulma_file;
+      }
+      else {
+        $css_file = $cdn_data['api']['bulma']['file_root'] . $bulma_file;
+        $properties['type'] = 'external';
+      }
+    }
+    else {
+      $properties['minified'] = TRUE;
+      $themes = Bulmaswatch::getThemes();
+      if (isset($themes[$theme]['local_css'])) {
+        $css_file = $themes[$theme]['local_css'];
+      }
+      else {
+        $css_file = $cdn_data['api']['bulmaswatch']['file_root'] . "/{$theme}/bulmaswatch.min.css";
+        $properties['type'] = 'external';
+      }
+    }
+    $libraries['global']['css']['base'] = [
+      $css_file => $properties,
+    ];
+  }
+
+}

@@ -1133,3 +1133,184 @@ GROUP BY base_table.vid, base_table.nid) "subquery"; Array
     [:db_condition_placeholder_0] => page
 )
 " at /home/sxs4805/public_html/core/lib/Drupal/Core/Database/Driver/mysql/ExceptionHandler.php line 53
+[29-Oct-2021 02:43:45 UTC] Error: Unsupported operand types in /home/sxs4805/public_html/core/modules/views/views.theme.inc on line 714 #0 /home/sxs4805/public_html/core/lib/Drupal/Core/Theme/ThemeManager.php(287): template_preprocess_views_view_grid(Array, 'views_view_grid', Array)
+#1 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(436): Drupal\Core\Theme\ThemeManager->render('views_view_grid', Array)
+#2 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(449): Drupal\Core\Render\Renderer->doRender(Array)
+#3 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(201): Drupal\Core\Render\Renderer->doRender(Array, false)
+#4 /home/sxs4805/public_html/core/lib/Drupal/Core/Template/TwigExtension.php(450): Drupal\Core\Render\Renderer->render(Array)
+#5 /home/sxs4805/public_html/sites/default/files/php/twig/6172b8d13252e_views-ui-view-preview-sec_vgGcuifKsCEmUIcuF2_q5aTKx/h4giXIQOehJaJGnAZqM8_H6yOw4oXCiSccf-H_h7qkI.php(53): Drupal\Core\Template\TwigExtension->escapeFilter(Object(Drupal\Core\Template\TwigEnvironment), Array, 'html', NULL, true)
+#6 /home/sxs4805/public_html/vendor/twig/twig/src/Template.php(405): __TwigTemplate_84f6bcf8852fcd144005b9a95f7ff63670a12633fde868bdbfaf23e9c0c55f5e->doDisplay(Array, Array)
+#7 /home/sxs4805/public_html/vendor/twig/twig/src/Template.php(378): Twig\Template->displayWithErrorHandling(Array, Array)
+#8 /home/sxs4805/public_html/vendor/twig/twig/src/Template.php(390): Twig\Template->display(Array)
+#9 /home/sxs4805/public_html/core/themes/engines/twig/twig.engine(65): Twig\Template->render(Array)
+#10 /home/sxs4805/public_html/core/lib/Drupal/Core/Theme/ThemeManager.php(384): twig_render_template('core/modules/vi...', Array)
+#11 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(436): Drupal\Core\Theme\ThemeManager->render('views_ui_view_p...', Array)
+#12 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(201): Drupal\Core\Render\Renderer->doRender(Array, false)
+#13 /home/sxs4805/public_html/core/lib/Drupal/Core/Template/TwigExtension.php(450): Drupal\Core\Render\Renderer->render(Array)
+#14 /home/sxs4805/public_html/sites/default/files/php/twig/6172b8d13252e_views-view.html.twig_Sn4N4nM6wZ35DYBklKpD4ko76/Bylbyh93hKIpzjjfnYvOANyGyOzLoSQdrePjzZwVr6o.php(110): Drupal\Core\Template\TwigExtension->escapeFilter(Object(Drupal\Core\Template\TwigEnvironment), Array, 'html', NULL, true)
+#15 /home/sxs4805/public_html/vendor/twig/twig/src/Template.php(405): __TwigTemplate_b930a39284aafce4142f0c4fd683e31967a60f92925f65dac33491f88f9c87bd->doDisplay(Array, Array)
+#16 /home/sxs4805/public_html/vendor/twig/twig/src/Template.php(378): Twig\Template->displayWithErrorHandling(Array, Array)
+#17 /home/sxs4805/public_html/vendor/twig/twig/src/Template.php(390): Twig\Template->display(Array)
+#18 /home/sxs4805/public_html/core/themes/engines/twig/twig.engine(65): Twig\Template->render(Array)
+#19 /home/sxs4805/public_html/core/lib/Drupal/Core/Theme/ThemeManager.php(384): twig_render_template('core/themes/sev...', Array)
+#20 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(436): Drupal\Core\Theme\ThemeManager->render('views_view', Array)
+#21 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(449): Drupal\Core\Render\Renderer->doRender(Array)
+#22 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(449): Drupal\Core\Render\Renderer->doRender(Array)
+#23 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(449): Drupal\Core\Render\Renderer->doRender(Array)
+#24 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(201): Drupal\Core\Render\Renderer->doRender(Array, true)
+#25 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(145): Drupal\Core\Render\Renderer->render(Array, true)
+#26 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(578): Drupal\Core\Render\Renderer->Drupal\Core\Render\{closure}()
+#27 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(146): Drupal\Core\Render\Renderer->executeInRenderContext(Object(Drupal\Core\Render\RenderContext), Object(Closure))
+#28 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/MainContent/AjaxRenderer.php(66): Drupal\Core\Render\Renderer->renderRoot(Array)
+#29 /home/sxs4805/public_html/core/lib/Drupal/Core/EventSubscriber/MainContentViewSubscriber.php(90): Drupal\Core\Render\MainContent\AjaxRenderer->renderResponse(Array, Object(Symfony\Component\HttpFoundation\Request), Object(Drupal\Core\Routing\CurrentRouteMatch))
+#30 [internal function]: Drupal\Core\EventSubscriber\MainContentViewSubscriber->onViewRenderArray(Object(Symfony\Component\HttpKernel\Event\ViewEvent), 'kernel.view', Object(Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher))
+#31 /home/sxs4805/public_html/core/lib/Drupal/Component/EventDispatcher/ContainerAwareEventDispatcher.php(142): call_user_func(Array, Object(Symfony\Component\HttpKernel\Event\ViewEvent), 'kernel.view', Object(Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher))
+#32 /home/sxs4805/public_html/vendor/symfony/http-kernel/HttpKernel.php(163): Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher->dispatch(Object(Symfony\Component\HttpKernel\Event\ViewEvent), 'kernel.view')
+#33 /home/sxs4805/public_html/vendor/symfony/http-kernel/HttpKernel.php(80): Symfony\Component\HttpKernel\HttpKernel->handleRaw(Object(Symfony\Component\HttpFoundation\Request), 1)
+#34 /home/sxs4805/public_html/core/lib/Drupal/Core/StackMiddleware/Session.php(57): Symfony\Component\HttpKernel\HttpKernel->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#35 /home/sxs4805/public_html/core/lib/Drupal/Core/StackMiddleware/KernelPreHandle.php(47): Drupal\Core\StackMiddleware\Session->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#36 /home/sxs4805/public_html/core/modules/page_cache/src/StackMiddleware/PageCache.php(106): Drupal\Core\StackMiddleware\KernelPreHandle->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#37 /home/sxs4805/public_html/core/modules/page_cache/src/StackMiddleware/PageCache.php(85): Drupal\page_cache\StackMiddleware\PageCache->pass(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#38 /home/sxs4805/public_html/core/lib/Drupal/Core/StackMiddleware/ReverseProxyMiddleware.php(47): Drupal\page_cache\StackMiddleware\PageCache->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#39 /home/sxs4805/public_html/core/lib/Drupal/Core/StackMiddleware/NegotiationMiddleware.php(52): Drupal\Core\StackMiddleware\ReverseProxyMiddleware->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#40 /home/sxs4805/public_html/vendor/stack/builder/src/Stack/StackedHttpKernel.php(23): Drupal\Core\StackMiddleware\NegotiationMiddleware->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#41 /home/sxs4805/public_html/core/lib/Drupal/Core/DrupalKernel.php(717): Stack\StackedHttpKernel->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#42 /home/sxs4805/public_html/index.php(19): Drupal\Core\DrupalKernel->handle(Object(Symfony\Component\HttpFoundation\Request))
+#43 {main}
+[29-Oct-2021 02:46:14 UTC] Error: Unsupported operand types in /home/sxs4805/public_html/core/modules/views/views.theme.inc on line 714 #0 /home/sxs4805/public_html/core/lib/Drupal/Core/Theme/ThemeManager.php(287): template_preprocess_views_view_grid(Array, 'views_view_grid', Array)
+#1 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(436): Drupal\Core\Theme\ThemeManager->render('views_view_grid', Array)
+#2 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(449): Drupal\Core\Render\Renderer->doRender(Array)
+#3 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(201): Drupal\Core\Render\Renderer->doRender(Array, false)
+#4 /home/sxs4805/public_html/core/lib/Drupal/Core/Template/TwigExtension.php(450): Drupal\Core\Render\Renderer->render(Array)
+#5 /home/sxs4805/public_html/sites/default/files/php/twig/6172b8d13252e_views-ui-view-preview-sec_vgGcuifKsCEmUIcuF2_q5aTKx/h4giXIQOehJaJGnAZqM8_H6yOw4oXCiSccf-H_h7qkI.php(53): Drupal\Core\Template\TwigExtension->escapeFilter(Object(Drupal\Core\Template\TwigEnvironment), Array, 'html', NULL, true)
+#6 /home/sxs4805/public_html/vendor/twig/twig/src/Template.php(405): __TwigTemplate_84f6bcf8852fcd144005b9a95f7ff63670a12633fde868bdbfaf23e9c0c55f5e->doDisplay(Array, Array)
+#7 /home/sxs4805/public_html/vendor/twig/twig/src/Template.php(378): Twig\Template->displayWithErrorHandling(Array, Array)
+#8 /home/sxs4805/public_html/vendor/twig/twig/src/Template.php(390): Twig\Template->display(Array)
+#9 /home/sxs4805/public_html/core/themes/engines/twig/twig.engine(65): Twig\Template->render(Array)
+#10 /home/sxs4805/public_html/core/lib/Drupal/Core/Theme/ThemeManager.php(384): twig_render_template('core/modules/vi...', Array)
+#11 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(436): Drupal\Core\Theme\ThemeManager->render('views_ui_view_p...', Array)
+#12 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(201): Drupal\Core\Render\Renderer->doRender(Array, false)
+#13 /home/sxs4805/public_html/core/lib/Drupal/Core/Template/TwigExtension.php(450): Drupal\Core\Render\Renderer->render(Array)
+#14 /home/sxs4805/public_html/sites/default/files/php/twig/6172b8d13252e_views-view.html.twig_Sn4N4nM6wZ35DYBklKpD4ko76/Bylbyh93hKIpzjjfnYvOANyGyOzLoSQdrePjzZwVr6o.php(110): Drupal\Core\Template\TwigExtension->escapeFilter(Object(Drupal\Core\Template\TwigEnvironment), Array, 'html', NULL, true)
+#15 /home/sxs4805/public_html/vendor/twig/twig/src/Template.php(405): __TwigTemplate_b930a39284aafce4142f0c4fd683e31967a60f92925f65dac33491f88f9c87bd->doDisplay(Array, Array)
+#16 /home/sxs4805/public_html/vendor/twig/twig/src/Template.php(378): Twig\Template->displayWithErrorHandling(Array, Array)
+#17 /home/sxs4805/public_html/vendor/twig/twig/src/Template.php(390): Twig\Template->display(Array)
+#18 /home/sxs4805/public_html/core/themes/engines/twig/twig.engine(65): Twig\Template->render(Array)
+#19 /home/sxs4805/public_html/core/lib/Drupal/Core/Theme/ThemeManager.php(384): twig_render_template('core/themes/sev...', Array)
+#20 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(436): Drupal\Core\Theme\ThemeManager->render('views_view', Array)
+#21 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(449): Drupal\Core\Render\Renderer->doRender(Array)
+#22 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(449): Drupal\Core\Render\Renderer->doRender(Array)
+#23 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(449): Drupal\Core\Render\Renderer->doRender(Array)
+#24 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(201): Drupal\Core\Render\Renderer->doRender(Array, true)
+#25 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(145): Drupal\Core\Render\Renderer->render(Array, true)
+#26 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(578): Drupal\Core\Render\Renderer->Drupal\Core\Render\{closure}()
+#27 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/Renderer.php(146): Drupal\Core\Render\Renderer->executeInRenderContext(Object(Drupal\Core\Render\RenderContext), Object(Closure))
+#28 /home/sxs4805/public_html/core/lib/Drupal/Core/Render/MainContent/AjaxRenderer.php(66): Drupal\Core\Render\Renderer->renderRoot(Array)
+#29 /home/sxs4805/public_html/core/lib/Drupal/Core/EventSubscriber/MainContentViewSubscriber.php(90): Drupal\Core\Render\MainContent\AjaxRenderer->renderResponse(Array, Object(Symfony\Component\HttpFoundation\Request), Object(Drupal\Core\Routing\CurrentRouteMatch))
+#30 [internal function]: Drupal\Core\EventSubscriber\MainContentViewSubscriber->onViewRenderArray(Object(Symfony\Component\HttpKernel\Event\ViewEvent), 'kernel.view', Object(Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher))
+#31 /home/sxs4805/public_html/core/lib/Drupal/Component/EventDispatcher/ContainerAwareEventDispatcher.php(142): call_user_func(Array, Object(Symfony\Component\HttpKernel\Event\ViewEvent), 'kernel.view', Object(Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher))
+#32 /home/sxs4805/public_html/vendor/symfony/http-kernel/HttpKernel.php(163): Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher->dispatch(Object(Symfony\Component\HttpKernel\Event\ViewEvent), 'kernel.view')
+#33 /home/sxs4805/public_html/vendor/symfony/http-kernel/HttpKernel.php(80): Symfony\Component\HttpKernel\HttpKernel->handleRaw(Object(Symfony\Component\HttpFoundation\Request), 1)
+#34 /home/sxs4805/public_html/core/lib/Drupal/Core/StackMiddleware/Session.php(57): Symfony\Component\HttpKernel\HttpKernel->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#35 /home/sxs4805/public_html/core/lib/Drupal/Core/StackMiddleware/KernelPreHandle.php(47): Drupal\Core\StackMiddleware\Session->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#36 /home/sxs4805/public_html/core/modules/page_cache/src/StackMiddleware/PageCache.php(106): Drupal\Core\StackMiddleware\KernelPreHandle->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#37 /home/sxs4805/public_html/core/modules/page_cache/src/StackMiddleware/PageCache.php(85): Drupal\page_cache\StackMiddleware\PageCache->pass(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#38 /home/sxs4805/public_html/core/lib/Drupal/Core/StackMiddleware/ReverseProxyMiddleware.php(47): Drupal\page_cache\StackMiddleware\PageCache->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#39 /home/sxs4805/public_html/core/lib/Drupal/Core/StackMiddleware/NegotiationMiddleware.php(52): Drupal\Core\StackMiddleware\ReverseProxyMiddleware->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#40 /home/sxs4805/public_html/vendor/stack/builder/src/Stack/StackedHttpKernel.php(23): Drupal\Core\StackMiddleware\NegotiationMiddleware->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#41 /home/sxs4805/public_html/core/lib/Drupal/Core/DrupalKernel.php(717): Stack\StackedHttpKernel->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#42 /home/sxs4805/public_html/index.php(19): Drupal\Core\DrupalKernel->handle(Object(Symfony\Component\HttpFoundation\Request))
+#43 {main}
+[31-Oct-2021 03:38:41 UTC] Uncaught PHP Exception Drupal\Core\Database\DatabaseExceptionWrapper: "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'node__field_map_geo.field_map_geo_value' in 'where clause': SELECT COUNT(*) AS "expression"
+FROM
+(SELECT 1 AS "expression"
+FROM
+"drup_node" "base_table"
+INNER JOIN "drup_node_field_data" "node_field_data" ON "node_field_data"."nid" = "base_table"."nid"
+INNER JOIN "drup_node__field_map_geo" "node__field_map_geo" ON "node__field_map_geo"."entity_id" = "base_table"."nid"
+WHERE ("node_field_data"."type" = :db_condition_placeholder_0) AND ("node__field_map_geo"."field_map_geo_value" IS NOT NULL)
+GROUP BY base_table.vid, base_table.nid) "subquery"; Array
+(
+    [:db_condition_placeholder_0] => page
+)
+" at /home/sxs4805/public_html/core/lib/Drupal/Core/Database/Driver/mysql/ExceptionHandler.php line 53
+[31-Oct-2021 03:38:46 UTC] Uncaught PHP Exception Drupal\Core\Database\DatabaseExceptionWrapper: "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'node__field_map_geo.field_map_geo_value' in 'where clause': SELECT COUNT(*) AS "expression"
+FROM
+(SELECT 1 AS "expression"
+FROM
+"drup_node" "base_table"
+INNER JOIN "drup_node_field_data" "node_field_data" ON "node_field_data"."nid" = "base_table"."nid"
+INNER JOIN "drup_node__field_map_geo" "node__field_map_geo" ON "node__field_map_geo"."entity_id" = "base_table"."nid"
+WHERE ("node_field_data"."type" = :db_condition_placeholder_0) AND ("node__field_map_geo"."field_map_geo_value" IS NOT NULL)
+GROUP BY base_table.vid, base_table.nid) "subquery"; Array
+(
+    [:db_condition_placeholder_0] => page
+)
+" at /home/sxs4805/public_html/core/lib/Drupal/Core/Database/Driver/mysql/ExceptionHandler.php line 53
+[31-Oct-2021 03:38:52 UTC] Uncaught PHP Exception Drupal\Core\Database\DatabaseExceptionWrapper: "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'node__field_map_geo.field_map_geo_value' in 'where clause': SELECT COUNT(*) AS "expression"
+FROM
+(SELECT 1 AS "expression"
+FROM
+"drup_node" "base_table"
+INNER JOIN "drup_node_field_data" "node_field_data" ON "node_field_data"."nid" = "base_table"."nid"
+INNER JOIN "drup_node__field_map_geo" "node__field_map_geo" ON "node__field_map_geo"."entity_id" = "base_table"."nid"
+WHERE ("node_field_data"."type" = :db_condition_placeholder_0) AND ("node__field_map_geo"."field_map_geo_value" IS NOT NULL)
+GROUP BY base_table.vid, base_table.nid) "subquery"; Array
+(
+    [:db_condition_placeholder_0] => page
+)
+" at /home/sxs4805/public_html/core/lib/Drupal/Core/Database/Driver/mysql/ExceptionHandler.php line 53
+[31-Oct-2021 03:43:18 UTC] Uncaught PHP Exception Drupal\Core\Database\DatabaseExceptionWrapper: "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'node__field_map_geo.field_map_geo_value' in 'where clause': SELECT COUNT(*) AS "expression"
+FROM
+(SELECT 1 AS "expression"
+FROM
+"drup_node" "base_table"
+INNER JOIN "drup_node_field_data" "node_field_data" ON "node_field_data"."nid" = "base_table"."nid"
+INNER JOIN "drup_node__field_map_geo" "node__field_map_geo" ON "node__field_map_geo"."entity_id" = "base_table"."nid"
+WHERE ("node_field_data"."type" = :db_condition_placeholder_0) AND ("node__field_map_geo"."field_map_geo_value" IS NOT NULL)
+GROUP BY base_table.vid, base_table.nid) "subquery"; Array
+(
+    [:db_condition_placeholder_0] => page
+)
+" at /home/sxs4805/public_html/core/lib/Drupal/Core/Database/Driver/mysql/ExceptionHandler.php line 53
+[31-Oct-2021 03:43:22 UTC] Uncaught PHP Exception Drupal\Core\Database\DatabaseExceptionWrapper: "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'node__field_map_geo.field_map_geo_value' in 'where clause': SELECT COUNT(*) AS "expression"
+FROM
+(SELECT 1 AS "expression"
+FROM
+"drup_node" "base_table"
+INNER JOIN "drup_node_field_data" "node_field_data" ON "node_field_data"."nid" = "base_table"."nid"
+INNER JOIN "drup_node__field_map_geo" "node__field_map_geo" ON "node__field_map_geo"."entity_id" = "base_table"."nid"
+WHERE ("node_field_data"."type" = :db_condition_placeholder_0) AND ("node__field_map_geo"."field_map_geo_value" IS NOT NULL)
+GROUP BY base_table.vid, base_table.nid) "subquery"; Array
+(
+    [:db_condition_placeholder_0] => page
+)
+" at /home/sxs4805/public_html/core/lib/Drupal/Core/Database/Driver/mysql/ExceptionHandler.php line 53
+[31-Oct-2021 03:43:53 UTC] Uncaught PHP Exception Drupal\Core\Database\DatabaseExceptionWrapper: "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'node__field_map_geo.field_map_geo_value' in 'where clause': SELECT COUNT(*) AS "expression"
+FROM
+(SELECT 1 AS "expression"
+FROM
+"drup_node" "base_table"
+INNER JOIN "drup_node_field_data" "node_field_data" ON "node_field_data"."nid" = "base_table"."nid"
+INNER JOIN "drup_node__field_map_geo" "node__field_map_geo" ON "node__field_map_geo"."entity_id" = "base_table"."nid"
+WHERE ("node_field_data"."type" = :db_condition_placeholder_0) AND ("node__field_map_geo"."field_map_geo_value" IS NOT NULL)
+GROUP BY base_table.vid, base_table.nid) "subquery"; Array
+(
+    [:db_condition_placeholder_0] => page
+)
+" at /home/sxs4805/public_html/core/lib/Drupal/Core/Database/Driver/mysql/ExceptionHandler.php line 53
+[31-Oct-2021 04:10:58 UTC] Uncaught PHP Exception Drupal\Core\Database\DatabaseExceptionWrapper: "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'node__field_map_geo.field_map_geo_value' in 'where clause': SELECT COUNT(*) AS "expression"
+FROM
+(SELECT 1 AS "expression"
+FROM
+"drup_node" "base_table"
+INNER JOIN "drup_node_field_data" "node_field_data" ON "node_field_data"."nid" = "base_table"."nid"
+INNER JOIN "drup_node__field_map_geo" "node__field_map_geo" ON "node__field_map_geo"."entity_id" = "base_table"."nid"
+WHERE ("node_field_data"."type" = :db_condition_placeholder_0) AND ("node__field_map_geo"."field_map_geo_value" IS NOT NULL)
+GROUP BY base_table.vid, base_table.nid) "subquery"; Array
+(
+    [:db_condition_placeholder_0] => page
+)
+" at /home/sxs4805/public_html/core/lib/Drupal/Core/Database/Driver/mysql/ExceptionHandler.php line 53
+[23-Nov-2021 19:20:12 UTC] Uncaught PHP Exception InvalidArgumentException: "Class "\Drupal\pwa\Controller\PWAController" does not exist." at /home/sxs4805/public_html/core/lib/Drupal/Core/DependencyInjection/ClassResolver.php line 24
+[23-Nov-2021 19:23:29 UTC] Uncaught PHP Exception Drupal\Component\Plugin\Exception\PluginNotFoundException: "The "PWA" entity type does not exist." at /home/sxs4805/public_html/core/lib/Drupal/Core/Entity/EntityTypeManager.php line 143

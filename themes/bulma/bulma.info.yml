@@ -1,0 +1,35 @@
+name: Bulma
+description: 'Built to use Bulma, a modern CSS framework based on Flexbox.'
+type: theme
+base theme: stable
+core_version_requirement: ^8.8 || ^9
+package: Core
+
+regions:
+  header: 'Header'
+  navbar_branding: 'Branding'
+  navbar_social: 'Social'
+  header_search: 'Search'
+  header_tabs: 'Tabs'
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  content: 'Content'
+  sidebar_first: 'Sidebar First'
+  sidebar_second: 'Sidebar Second'
+  tile_one: 'Tile 1'
+  tile_two: 'Tile 2'
+  tile_three: 'Tile 3'
+  tile_four: 'Tile 4'
+  tile_five: 'Tile 5'
+  bottom: 'Bottom'
+  footer: 'Footer'
+
+libraries:
+  - bulma/global
+
+# Information added by Drupal.org packaging script on 2020-10-27
+version: '8.x-1.0-rc1'
+project: 'bulma'
+datestamp: 1603840308
